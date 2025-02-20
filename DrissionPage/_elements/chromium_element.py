@@ -1184,7 +1184,6 @@ else{a.push(e.snapshotItem(i));}}"""
 
 
 def run_js(page_or_ele, script, as_expr, timeout, args=None):
-    print('执行js: ', script)
     if isinstance(page_or_ele, (ChromiumElement, ShadowRoot)):
         is_page = False
         page = page_or_ele.owner
