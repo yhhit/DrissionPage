@@ -436,7 +436,7 @@ class ChromiumElement(DrissionElement):
     def style(self, style, pseudo_ele=''):
         if pseudo_ele:
             pseudo_ele = f', "{pseudo_ele}"'
-        return self._run_js(f'return window.{replace_name_dict['getComputedStyle']}(this{pseudo_ele}).getPropertyValue("{style}");')
+        return self._run_js(f'return window.{replace_name_dict["getComputedStyle"]}(this{pseudo_ele}).getPropertyValue("{style}");')
 
     def src(self, timeout=None, base64_to_bytes=True):
         if timeout is None:

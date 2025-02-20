@@ -112,7 +112,7 @@ class PageScroller(Scroller):
 
     def _to_see(self, ele, center):
         txt = 'true' if center else 'false'
-        ele._run_js(f'this.{replace_name_dict['scrollIntoViewIfNeeded']}({txt});')
+        ele._run_js(f'this.{replace_name_dict["scrollIntoViewIfNeeded"]}({txt});')
         if center or (center is not False and ele.states.is_covered):
             ele._run_js('''function getWindowScrollTop() {let scroll_top = 0;
                     if (document.documentElement && document.documentElement.scrollTop) {
