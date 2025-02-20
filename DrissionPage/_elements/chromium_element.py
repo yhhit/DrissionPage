@@ -30,7 +30,7 @@ from .._units.states import ElementStates, ShadowRootStates
 from .._units.waiter import ElementWaiter
 from ..errors import (ContextLostError, ElementLostError, JavaScriptError, CDPError, NoResourceError,
                       AlertExistsError, NoRectError, LocatorError)
-
+from ..func_replace import replace_name_dict
 __FRAME_ELEMENT__ = ('iframe', 'frame')
 
 
@@ -436,7 +436,7 @@ class ChromiumElement(DrissionElement):
     def style(self, style, pseudo_ele=''):
         if pseudo_ele:
             pseudo_ele = f', "{pseudo_ele}"'
-        return self._run_js(f'return window.getComputedStyle(this{pseudo_ele}).getPropertyValue("{style}");')
+        return self._run_js(f'return window.{replace_name_dict['getComputedStyle']}(this{pseudo_ele}).getPropertyValue("{style}");')
 
     def src(self, timeout=None, base64_to_bytes=True):
         if timeout is None:
@@ -1184,6 +1184,7 @@ else{a.push(e.snapshotItem(i));}}"""
 
 
 def run_js(page_or_ele, script, as_expr, timeout, args=None):
+    print('执行js: ', script)
     if isinstance(page_or_ele, (ChromiumElement, ShadowRoot)):
         is_page = False
         page = page_or_ele.owner

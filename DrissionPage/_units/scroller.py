@@ -6,7 +6,7 @@
 @Copyright: (c) 2020 by g1879, Inc. All Rights Reserved.
 """
 from time import sleep, perf_counter
-
+from ..func_replace import replace_name_dict
 
 class Scroller(object):
     """用于滚动的对象"""
@@ -112,7 +112,7 @@ class PageScroller(Scroller):
 
     def _to_see(self, ele, center):
         txt = 'true' if center else 'false'
-        ele._run_js(f'this.scrollIntoViewIfNeeded({txt});')
+        ele._run_js(f'this.{replace_name_dict['scrollIntoViewIfNeeded']}({txt});')
         if center or (center is not False and ele.states.is_covered):
             ele._run_js('''function getWindowScrollTop() {let scroll_top = 0;
                     if (document.documentElement && document.documentElement.scrollTop) {
